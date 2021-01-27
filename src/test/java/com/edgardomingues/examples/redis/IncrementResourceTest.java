@@ -129,4 +129,26 @@ public class IncrementResourceTest {
             .statusCode(200)
             .body("size()", is(0));
     }
+
+    @Test
+    void reactiveSet() {
+        given()
+            .contentType(ContentType.JSON)
+            .accept(ContentType.JSON)
+            .body("{\"key\":\"reactive-key\",\"value\":123}")
+            .when()
+            .post("/increments/reactive")
+            .then()
+            .statusCode(200)
+            .body("key", is("reactive-key"))
+            .body("value", is(123));
+
+        // Delete key
+        given()
+            .accept(ContentType.JSON)
+            .when()
+            .delete("/increments/reactive-key")
+            .then()
+            .statusCode(204);
+    }
 }

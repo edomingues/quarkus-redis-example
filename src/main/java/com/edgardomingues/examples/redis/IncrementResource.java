@@ -52,4 +52,11 @@ public class IncrementResource {
     public Uni<Void> delete(@PathParam("key") String key) {
         return service.del(key);
     }
+
+    @POST
+    @Path("/reactive")
+    public Uni<Increment> reactiveCreate(Increment increment) {
+        return service.setReactive(increment.key, increment.value)
+                      .replaceWith(increment);
+    }
 }

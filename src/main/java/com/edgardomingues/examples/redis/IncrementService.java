@@ -13,6 +13,8 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
+import static java.util.Arrays.asList;
+
 @Singleton
 class IncrementService {
 
@@ -23,7 +25,7 @@ class IncrementService {
     ReactiveRedisClient reactiveRedisClient; 
 
     Uni<Void> del(String key) {
-        return reactiveRedisClient.del(Arrays.asList(key))
+        return reactiveRedisClient.del(asList(key))
                 .map(response -> null);
     }
 
@@ -32,7 +34,13 @@ class IncrementService {
     }
 
     void set(String key, Integer value) {
-        redisClient.set(Arrays.asList(key, value.toString()));
+        redisClient.set(asList(key, value.toString()));
+    }
+
+    Uni<Void> setReactive(String key, Integer value) {
+        return this.reactiveRedisClient
+            .set(Arrays.asList(key, value.toString()))
+            .map(response -> null);
     }
 
     void increment(String key, Integer incrementBy) {
