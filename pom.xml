@@ -17,6 +17,8 @@
     <quarkus.platform.group-id>io.quarkus</quarkus.platform.group-id>
     <quarkus.platform.version>1.11.0.Final</quarkus.platform.version>
     <surefire-plugin.version>2.22.1</surefire-plugin.version>
+    <artemis-key-value.version>0.1.0.M1</artemis-key-value.version>
+    <redis-driver.version>0.0.9</redis-driver.version>
   </properties>
   <dependencyManagement>
     <dependencies>
@@ -49,6 +51,20 @@
     <dependency>
       <groupId>io.quarkus</groupId>
       <artifactId>quarkus-redis-client</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.eclipse.jnosql.artemis</groupId>
+      <artifactId>artemis-key-value</artifactId>
+      <version>${artemis-key-value.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.jnosql.diana</groupId>
+      <artifactId>redis-driver</artifactId>
+      <version>${redis-driver.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-jsonb</artifactId>
     </dependency>
     <dependency>
       <groupId>io.quarkus</groupId>

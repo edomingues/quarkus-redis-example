@@ -49,14 +49,8 @@ public class IncrementResource {
 
     @DELETE
     @Path("/{key}")
-    public Uni<Void> delete(@PathParam("key") String key) {
-        return service.del(key);
+    public void delete(@PathParam("key") String key) {
+        service.del(key);
     }
 
-    @POST
-    @Path("/reactive")
-    public Uni<Increment> reactiveCreate(Increment increment) {
-        return service.setReactive(increment.key, increment.value)
-                      .replaceWith(increment);
-    }
 }
